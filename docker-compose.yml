@@ -1,0 +1,119 @@
+# version: "3.9"
+# services:
+#   postgres:
+#     image: postgres
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: 9315751488
+#       POSTGRES_DB: handson4
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#     ports:
+#       - "5432:5432"
+  
+#   pgadmin:
+#     image: dpage/pgadmin4
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: admin@admin.com
+#       PGADMIN_DEFAULT_PASSWORD: admin
+#     ports:
+#       - "8080:80"
+  
+#   golang-app:
+#     build: ./HANDS_ON_4
+#     environment:
+#       DB_HOST: postgres
+#       DB_PORT: 5432
+#       DB_USER: postgres
+#       DB_PASSWORD: 9315751488
+#       DB_NAME: handson4
+#     volumes:
+#       - ./go-app:/go/src/app
+#     ports:
+#       - "8081:8081"
+#     depends_on:
+#       - postgres
+
+# volumes:
+#   postgres_data:
+
+
+
+# services:
+#   postgres:
+#     image: postgres
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: 9315751488
+#       POSTGRES_DB: handson4
+#     volumes:
+#       - postgres_data:/var/lib/postgresql/data
+#     ports:
+#       - "5432:5432"
+  
+#   pgadmin:
+#     image: dpage/pgadmin4
+#     environment:
+#       PGADMIN_DEFAULT_EMAIL: admin@admin.com
+#       PGADMIN_DEFAULT_PASSWORD: admin
+#     ports:
+#       - "8080:80"
+  
+# #   
+# golang-app:
+#   build:
+#     context: ./hands_on_4  # Make sure this points to your source code directory
+#     dockerfile: Dockerfile  # Explicitly specify the Dockerfile if it's named differently
+#   environment:
+#     DB_HOST: postgres
+#     DB_PORT: 5432
+#     DB_USER: postgres
+#     DB_PASSWORD: 9315751488
+#     DB_NAME: handson4
+#   volumes:
+#     - ./hands_on_4:/go/src/app
+#   ports:
+#     - "8081:8081"
+#   depends_on:
+#     - postgres
+
+
+services:
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 9315751488
+      POSTGRES_DB: handson4
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+
+  golang-app:
+    build:
+      context: .  # Current directory as the build context
+      dockerfile: Dockerfile
+    environment:
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: postgres
+      DB_PASSWORD: 9315751488
+      DB_NAME: handson4
+    volumes:
+      - ./hands_on_4:/go/src/app
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
